@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { empDetailsData } from "../Types/type";
 import { editEmpDataById } from "../API/employeesAPI";
 
-const EditEmpModel: React.FC<empDetailsData> = (data: empDetailsData) => {
+interface editModelType {
+  data: empDetailsData;
+  getData: () => void;
+}
+
+const EditEmpModel: React.FC<editModelType> = ({ data, getData }) => {
   const [newData, setNewData] = useState<empDetailsData>(data);
 
   // edit functiinality
@@ -21,6 +26,10 @@ const EditEmpModel: React.FC<empDetailsData> = (data: empDetailsData) => {
         console.error(error);
       });
   };
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   return (
     <div
@@ -51,7 +60,6 @@ const EditEmpModel: React.FC<empDetailsData> = (data: empDetailsData) => {
                 onChange={(e) =>
                   setNewData({ ...newData, name: e.target.value })
                 }
-                defaultValue={data.name}
               />
             </div>
 
@@ -68,7 +76,6 @@ const EditEmpModel: React.FC<empDetailsData> = (data: empDetailsData) => {
                 onChange={(e) =>
                   setNewData({ ...newData, address: e.target.value })
                 }
-                defaultValue={data.address}
               />
             </div>
 
@@ -85,7 +92,6 @@ const EditEmpModel: React.FC<empDetailsData> = (data: empDetailsData) => {
                 onChange={(e) =>
                   setNewData({ ...newData, role: e.target.value })
                 }
-                defaultValue={data.role}
               />
             </div>
 
@@ -105,7 +111,6 @@ const EditEmpModel: React.FC<empDetailsData> = (data: empDetailsData) => {
                 onChange={(e) =>
                   setNewData({ ...newData, DOB: e.target.value })
                 }
-                defaultValue={data.DOB}
               />
             </div>
           </div>

@@ -19,7 +19,7 @@ export default function EditProfile() {
     getOrganizationData()
       .then((res) => {
         console.log(res.data.data);
-        const data = res.data.data;
+        const { data } = res.data;
         setOrganization(data);
       })
       .catch((error) => {

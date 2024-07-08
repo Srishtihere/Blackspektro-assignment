@@ -15,10 +15,15 @@ export default function EmployeeDetails() {
 
   useEffect(() => {
     setIsLoading(true);
+    getEmpData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const getEmpData = () => {
     getEmpDataById(Number(id))
       .then((res) => {
         console.log(res.data.data);
-        const data = res.data.data;
+        const { data } = res.data;
         setIsLoading(false);
         setData(data);
       })
@@ -27,8 +32,7 @@ export default function EmployeeDetails() {
         console.error(error);
         setError(error);
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  };
 
   return isLoading ? (
     <Loader />
@@ -75,14 +79,7 @@ export default function EmployeeDetails() {
           </div>
         </div>
       </div>
-      <EditEmpModel
-        name={data.name}
-        address={data.address}
-        id={data.id}
-        DOB={data.DOB}
-        role={data.role}
-        isActive={data.isActive}
-      />
+      <EditEmpModel data={data} getData={getEmpData} />
     </>
   ) : (
     error && (

@@ -4,12 +4,12 @@ const fs = require("fs");
 const app = express();
 const port = 8000;
 
-var cors = require("cors");
+const cors = require("cors");
 app.use(cors());
 
 app.use(bodyParser.json());
 
-const dataPath = "./data/employees.json";
+const dataPath = "./data/data.json";
 
 // Read and parse JSON data
 const getEmployeeData = () => {
