@@ -1,5 +1,6 @@
 # Blackspektro-assignment
 This is an assignment for Blackspektro.
 
-emp-manager: front-end repository
-test-backend: back-end repository
+<b>emp-manager:</b> front-end repository.
+
+<b>test-backend:</b> back-end repository.
