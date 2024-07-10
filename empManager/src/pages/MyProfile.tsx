@@ -13,7 +13,7 @@ export default function MyProfile() {
     getOrganizationData()
       .then((res) => {
         console.log(res.data.data);
-        const data = res.data.data;
+        const { data } = res.data;
         setIsLoading(false);
         setOrgData(data);
       })
